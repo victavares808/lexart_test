@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Button } from '../Button';
 import { DropFilter } from './DropFilter';
 import { SearchBarContainer, SearchInput } from './style';
