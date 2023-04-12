@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  frontend:
+    image: node:18.15.0-alpine3.17
+    platform: linux/x86_64
+    working_dir: /web
+    volumes:
+      - ./web:/web
+    ports:
+      - "5173:5173"
+    command: sh -c "npm i && npm run dev"
