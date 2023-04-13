@@ -1,5 +1,5 @@
-import { type CreateProductDTO } from '../../domain/useCases/AddProduct';
+import { type CreateProductDTO } from '../../domain/useCases/AddProducts';
 
 export interface AddProductRepository {
-  add: (product: CreateProductDTO) => Promise<boolean>
+  addMany: (products: CreateProductDTO[]) => Promise<void>
 }

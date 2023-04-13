@@ -5,6 +5,7 @@
   },
   "rules": {
     "@typescript-eslint/semi": "off",
-    "@typescript-eslint/no-misused-promises": "off"
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/return-await": "off"
   }
 }
