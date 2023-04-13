@@ -1,5 +1,5 @@
 import { type Controller, type HttpRequest, type HttpResponse } from '../../protocols';
-import { type Crawler } from '../../../providers/Crawler';
+import { type Crawler } from '../../../infra/protocols/Crawler';
 
 export class GetProductsFromBuscapeController implements Controller {
   constructor (private readonly crawler: Crawler) {

@@ -1,5 +1,5 @@
+import { type Crawler } from '../../protocols';
 import puppeteer, { type Page } from 'puppeteer';
-import { type Crawler } from '../Crawler';
 
 export class BuscapeCrawlerProvider implements Crawler {
   private readonly baseURL = 'https://www.buscape.com.br/';
