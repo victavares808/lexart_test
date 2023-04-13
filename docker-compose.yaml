@@ -2,6 +2,7 @@ version: '3.9'
 services:
   frontend:
     image: node:18.15.0-alpine3.17
+    container_name: frontend
     platform: linux/x86_64
     working_dir: /web
     volumes:
@@ -9,3 +10,25 @@ services:
     ports:
       - "5173:5173"
     command: sh -c "npm i && npm run dev"
+  backend:
+    image: node:18.15.0-alpine3.17
+    container_name: backend
+    platform: linux/x86_64
+    working_dir: /server
+    volumes:
+      - ./server:/server
+    ports:
+      - "3000:3000"
+    command: sh -c "npm i && npm run dev"
+  db:
+    image: postgres:8
+    container_name: database
+    ports:
+      - "5432:5432"
+    restart: 'always'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+
+
