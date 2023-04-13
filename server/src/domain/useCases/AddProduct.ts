@@ -8,5 +8,5 @@ export interface CreateProductDTO {
 }
 
 export interface AddProduct {
-  add: (product: CreateProductDTO) => Promise<boolean>
+  execute: (product: CreateProductDTO) => Promise<boolean>
 }

@@ -1,5 +1,5 @@
 import { type ApiProvider } from '../../protocols';
-import { type GetProductDTO } from '../../../dtos/GetProductDTO';
+import { type GetProductDTO } from '../../../data/protocols/';
 
 export class MercadoLivreApiProvider implements ApiProvider {
   private readonly baseURL = 'https://api.mercadolibre.com/sites/MLB/search?q=';
