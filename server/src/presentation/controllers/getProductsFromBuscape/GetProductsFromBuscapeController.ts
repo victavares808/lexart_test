@@ -3,20 +3,16 @@ import { type Crawler } from '../../../infra/protocols';
 import { type GetProducts } from '../../../domain/useCases/GetProducts';
 
 export class GetProductsFromBuscapeController implements Controller {
-  constructor (private readonly crawler: Crawler, private readonly getProducts: GetProducts) {
+  constructor(private readonly crawler: Crawler, private readonly getProducts: GetProducts) {
   }
 
-  async handle (request: HttpRequest): Promise<HttpResponse> {
+  async handle(request: HttpRequest): Promise<HttpResponse> {
     const { category } = request.body;
-    const products = await this.getProducts.execute(category);
+    let products = await this.getProducts.execute(category, 'BUSCAPE');
 
     if (products.length === 0) {
       await this.crawler.getProducts(category);
-      const products = await this.getProducts.execute(category);
-      return {
-        statusCode: 200,
-        body: products
-      }
+      products = await this.getProducts.execute(category, 'BUSCAPE');
     }
 
     return {

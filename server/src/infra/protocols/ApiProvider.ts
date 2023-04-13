@@ -1,3 +1,3 @@
 export interface ApiProvider {
-  getProducts: (product: string) => Promise<any>
+  getProducts: (product: string) => Promise<void>
 }

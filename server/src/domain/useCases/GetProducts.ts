@@ -6,5 +6,5 @@ export interface GetProductDTO {
 }
 
 export interface GetProducts {
-  execute: (category: string) => Promise<GetProductDTO[]>
+  execute: (category: string, engine: 'MLB' | 'BUSCAPE') => Promise<GetProductDTO[]>
 }

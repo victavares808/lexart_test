@@ -3,15 +3,15 @@ import puppeteer, { executablePath, type Page } from 'puppeteer';
 import { type GetProductDTO } from '../../../domain/useCases/GetProducts';
 import { type AddProductsOnDB } from '../../../data/useCases/addProducts/AddProducts';
 import { convertPriceToNumber } from '../../../utils/convertPriceToNumber';
-import { CreateProductDTO } from '../../../data/protocols';
+import { type CreateProductDTO } from '../../../data/protocols';
 
 export class BuscapeCrawlerProvider implements Crawler {
   private readonly baseURL = 'https://www.buscape.com.br/';
 
-  constructor (private readonly addProducts: AddProductsOnDB) {
+  constructor(private readonly addProducts: AddProductsOnDB) {
   }
 
-  async getProducts (category: string): Promise<void> {
+  async getProducts(category: string): Promise<void> {
     const browser = await puppeteer.launch({
       executablePath: executablePath(),
       args: ['--no-sandbox']
@@ -34,7 +34,7 @@ export class BuscapeCrawlerProvider implements Crawler {
     await this.addProducts.execute(productsToAddOnDB);
   }
 
-  private async getProductsInfo (page: Page): Promise<any> {
+  private async getProductsInfo(page: Page): Promise<any> {
     return await page.evaluate(() => {
       const productCardsDivs = Array.from(document.querySelectorAll('div[data-testid="product-card"]'));
 

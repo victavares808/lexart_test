@@ -4,13 +4,11 @@ import {
 } from '../presentation/controllers/getProductsFromBuscape/GetProductsFromBuscapeController';
 import { BuscapeCrawlerProvider } from '../infra/providers/buscapeCrawler/BuscapeCrawlerProvider';
 import { AddProductsOnDB } from '../data/useCases/addProducts/AddProducts';
-import {
-  BuscapeProductsRepository
-} from '../infra/database/repositories/BuscapeProductsRepository';
+import { PrismaProductsRepository } from '../infra/database/repositories/PrismaProductsRepository';
 import { GetProductsFromDB } from '../data/useCases/getProducts/GetProducts';
 
 export const makeGetProductsOnBuscapeController = (): Controller => {
-  const buscapeRepository = new BuscapeProductsRepository();
+  const buscapeRepository = new PrismaProductsRepository();
   const addProductOnDB = new AddProductsOnDB(buscapeRepository);
   const crawler = new BuscapeCrawlerProvider(addProductOnDB);
 

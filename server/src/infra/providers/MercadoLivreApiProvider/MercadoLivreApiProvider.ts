@@ -1,22 +1,29 @@
 import { type ApiProvider } from '../../protocols';
-import { type GetProductDTO } from '../../../data/protocols/';
+import { type CreateProductDTO } from '../../../data/protocols/';
+import { type AddProductsOnDB } from '../../../data/useCases/addProducts/AddProducts';
 
 export class MercadoLivreApiProvider implements ApiProvider {
   private readonly baseURL = 'https://api.mercadolibre.com/sites/MLB/search?q=';
 
-  async getProducts (category: string): Promise<GetProductDTO[]> {
-    const response = await fetch(this.baseURL + category);
-    const data = await response.json();
-    return this.formatResult(data.results);
+  constructor(private readonly addProducts: AddProductsOnDB) {
   }
 
-  private formatResult (data: any[]): GetProductDTO[] {
+  async getProducts(category: string): Promise<void> {
+    const response = await fetch(this.baseURL + category);
+    const data = await response.json();
+    const productsToAddOnDB = this.formatResult(data.results, category);
+    await this.addProducts.execute(productsToAddOnDB);
+  }
+
+  private formatResult(data: any[], category: string): CreateProductDTO[] {
     return data.map((product) => {
       return {
         name: product.title,
         image: product.thumbnail,
-        price: product.price,
-        link: product.permalink
+        price: parseFloat(product.price),
+        link: product.permalink,
+        category,
+        engine: 'MLB'
       };
     });
   }

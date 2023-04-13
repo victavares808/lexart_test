@@ -6,8 +6,8 @@ import {
   type GetProductsRepository
 } from '../../../data/protocols';
 
-export class BuscapeProductsRepository implements AddProductRepository, GetProductsRepository {
-  async addMany (products: CreateProductDTO[]): Promise<void> {
+export class PrismaProductsRepository implements AddProductRepository, GetProductsRepository {
+  async addMany(products: CreateProductDTO[]): Promise<void> {
     await prisma.product.createMany(
       {
         data: products
@@ -15,7 +15,7 @@ export class BuscapeProductsRepository implements AddProductRepository, GetProdu
     )
   }
 
-  async getAll (category: string): Promise<GetProductDTO[]> {
+  async getAll(category: string, engine: 'MLB' | 'BUSCAPE'): Promise<GetProductDTO[]> {
     return prisma.product.findMany(
       {
         select: {
@@ -25,7 +25,7 @@ export class BuscapeProductsRepository implements AddProductRepository, GetProdu
           image: true
         },
         where: {
-          engine: 'BUSCAPE',
+          engine,
           category
         }
       }
