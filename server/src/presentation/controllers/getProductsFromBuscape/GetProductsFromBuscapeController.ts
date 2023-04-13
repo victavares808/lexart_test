@@ -8,12 +8,11 @@ export class GetProductsFromBuscapeController implements Controller {
 
   async handle (request: HttpRequest): Promise<HttpResponse> {
     const { category } = request.body;
-
-    const products = await this.getProducts.execute();
+    const products = await this.getProducts.execute(category);
 
     if (products.length === 0) {
       await this.crawler.getProducts(category);
-      const products = await this.getProducts.execute();
+      const products = await this.getProducts.execute(category);
       return {
         statusCode: 200,
         body: products
