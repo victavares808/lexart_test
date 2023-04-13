@@ -19,6 +19,8 @@ services:
       - ./server:/server
     ports:
       - "3001:3001"
+    depends_on:
+      - db
     command: sh -c "npm i && npm run dev"
   db:
     image: postgres:latest
