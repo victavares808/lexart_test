@@ -8,20 +8,20 @@ services:
     volumes:
       - ./web:/web
     ports:
-      - "5173:5173"
+      - "3000:3000"
     command: sh -c "npm i && npm run dev"
   backend:
-    image: node:18.15.0-alpine3.17
+    build: ./server
     container_name: backend
     platform: linux/x86_64
     working_dir: /server
     volumes:
       - ./server:/server
     ports:
-      - "3000:3000"
+      - "3001:3001"
     command: sh -c "npm i && npm run dev"
   db:
-    image: postgres:8
+    image: postgres:latest
     container_name: database
     ports:
       - "5432:5432"
