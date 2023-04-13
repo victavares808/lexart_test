@@ -1,11 +1,15 @@
 import { type Crawler } from '../../protocols';
-import puppeteer, { type Page } from 'puppeteer';
+import puppeteer, { type Page, executablePath } from 'puppeteer';
+
 
 export class BuscapeCrawlerProvider implements Crawler {
   private readonly baseURL = 'https://www.buscape.com.br/';
 
   async getProducts (product: string): Promise<any> {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      executablePath: executablePath(),
+      args:['--no-sandbox']
+    });
     const page = await browser.newPage();
     await page.goto(this.baseURL + 'celular');
     const productsBaseInfo = await this.getProductsInfo(page);
