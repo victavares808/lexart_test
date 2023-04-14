@@ -1,11 +1,11 @@
-import { type Crawler } from '../../protocols';
+import { type Engine } from '../../protocols';
 import puppeteer, { executablePath, type Page } from 'puppeteer';
 import { type GetProductDTO } from '../../../domain/useCases/GetProducts';
 import { type AddProductsOnDB } from '../../../data/useCases/addProducts/AddProducts';
 import { convertPriceToNumber } from '../../../utils/convertPriceToNumber';
 import { type CreateProductDTO } from '../../../data/protocols';
 
-export class BuscapeCrawlerProvider implements Crawler {
+export class BuscapeCrawlerProvider implements Engine {
   private readonly baseURL = 'https://www.buscape.com.br/';
 
   constructor(private readonly addProducts: AddProductsOnDB) {
@@ -51,7 +51,7 @@ export class BuscapeCrawlerProvider implements Crawler {
         }
 
         return {
-          name: productDOM.querySelector('h2[data-testid="product-card::name"]')?.textContent,
+          name: productDOM.querySelector('h2[data-testid="product-card::name"]')?.textContent?.toLowerCase(),
           link: productDOM.querySelector('a')?.href,
           price: productDOM.querySelector('p[data-testid="product-card::price"]')?.textContent,
           image

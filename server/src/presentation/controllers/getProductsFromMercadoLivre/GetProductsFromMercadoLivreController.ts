@@ -12,11 +12,12 @@ export class GetProductsFromMercadoLivreController implements Controller {
 
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const { category } = request.params;
-    let products = await this.getProducts.execute(category, 'MLB');
+    const { query } = request.query;
+    let products = await this.getProducts.execute(category, 'MLB', query);
 
     if (products.length === 0) {
       await this.api.getProducts(category);
-      products = await this.getProducts.execute(category, 'MLB');
+      products = await this.getProducts.execute(category, 'MLB', query);
     }
 
     return {

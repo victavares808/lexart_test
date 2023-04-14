@@ -7,12 +7,14 @@ export class GetProductsFromBuscapeController implements Controller {
   }
 
   async handle(request: HttpRequest): Promise<HttpResponse> {
-    const { category } = request.body;
-    let products = await this.getProducts.execute(category, 'BUSCAPE');
+    const { category } = request.params;
+    const { query } = request.query;
+
+    let products = await this.getProducts.execute(category, 'BUSCAPE', query);
 
     if (products.length === 0) {
       await this.crawler.getProducts(category);
-      products = await this.getProducts.execute(category, 'BUSCAPE');
+      products = await this.getProducts.execute(category, 'BUSCAPE', query);
     }
 
     return {

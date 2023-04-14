@@ -5,6 +5,6 @@ import { adaptRoute } from '../adapters/ExpressAdapter';
 const buscapeProductsRouter = Router();
 const controller = makeGetProductsOnBuscapeController();
 
-buscapeProductsRouter.get('/products/buscape', adaptRoute(controller));
+buscapeProductsRouter.get('/products/buscape/:category', adaptRoute(controller));
 
 export { buscapeProductsRouter };

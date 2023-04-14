@@ -5,8 +5,7 @@ export class GetProductsFromDB implements GetProducts {
   constructor(private readonly repository: GetProductsRepository) {
   }
 
-  async execute(category: string, engine: 'MLB' | 'BUSCAPE'): Promise<GetProductDTO[]> {
-    console.log(category);
-    return await this.repository.getAll(category, engine);
+  async execute(category: string, engine: 'ALL' | 'MLB' | 'BUSCAPE', query?: string): Promise<GetProductDTO[]> {
+    return await this.repository.getAll(category, engine, query);
   }
 }

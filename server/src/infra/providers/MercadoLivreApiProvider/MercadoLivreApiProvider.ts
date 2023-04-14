@@ -1,8 +1,8 @@
-import { type ApiProvider } from '../../protocols';
+import { Engine } from '../../protocols';
 import { type CreateProductDTO } from '../../../data/protocols/';
 import { type AddProductsOnDB } from '../../../data/useCases/addProducts/AddProducts';
 
-export class MercadoLivreApiProvider implements ApiProvider {
+export class MercadoLivreApiProvider implements Engine {
   private readonly baseURL = 'https://api.mercadolibre.com/sites/MLB/search?q=';
 
   constructor(private readonly addProducts: AddProductsOnDB) {
@@ -18,7 +18,7 @@ export class MercadoLivreApiProvider implements ApiProvider {
   private formatResult(data: any[], category: string): CreateProductDTO[] {
     return data.map((product) => {
       return {
-        name: product.title,
+        name: product.title.toLowerCase(),
         image: product.thumbnail,
         price: parseFloat(product.price),
         link: product.permalink,

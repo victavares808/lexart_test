@@ -15,8 +15,26 @@ export class PrismaProductsRepository implements AddProductRepository, GetProduc
     )
   }
 
-  async getAll(category: string, engine: 'MLB' | 'BUSCAPE'): Promise<GetProductDTO[]> {
-    console.log(category, engine);
+  async getAll(category: string, engine: 'ALL' | 'MLB' | 'BUSCAPE', query?: string): Promise<GetProductDTO[]> {
+    if (engine === 'ALL') {
+      return prisma.product.findMany(
+        {
+          select: {
+            name: true,
+            price: true,
+            link: true,
+            image: true
+          },
+          where: {
+            category,
+            name: {
+              contains: query?.toLowerCase()
+            }
+          }
+        }
+      );
+    }
+
     return prisma.product.findMany(
       {
         select: {
@@ -27,7 +45,10 @@ export class PrismaProductsRepository implements AddProductRepository, GetProduc
         },
         where: {
           engine,
-          category
+          category,
+          name: {
+            contains: query?.toLowerCase()
+          }
         }
       }
     );
