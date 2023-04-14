@@ -4,7 +4,8 @@ import { type Controller, type HttpRequest, type HttpResponse } from '../../pres
 export const adaptRoute = (controller: Controller) => {
   return async (req: Request, res: Response) => {
     const httpRequest: HttpRequest = {
-      body: req.body
+      body: req.body,
+      params: req.params
     };
 
     const httpResponse: HttpResponse = await controller.handle(httpRequest);

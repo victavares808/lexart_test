@@ -16,6 +16,7 @@ export class PrismaProductsRepository implements AddProductRepository, GetProduc
   }
 
   async getAll(category: string, engine: 'MLB' | 'BUSCAPE'): Promise<GetProductDTO[]> {
+    console.log(category, engine);
     return prisma.product.findMany(
       {
         select: {

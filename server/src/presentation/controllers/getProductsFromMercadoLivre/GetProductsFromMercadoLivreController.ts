@@ -11,7 +11,7 @@ export class GetProductsFromMercadoLivreController implements Controller {
   }
 
   async handle(request: HttpRequest): Promise<HttpResponse> {
-    const { category } = request.body;
+    const { category } = request.params;
     let products = await this.getProducts.execute(category, 'MLB');
 
     if (products.length === 0) {
