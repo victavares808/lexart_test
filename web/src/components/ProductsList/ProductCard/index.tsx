@@ -1,27 +1,20 @@
+import { Product } from '../../../context/ProductsContext';
 import { Button } from '../../Button';
 import {
   ImageContainer,
   ProductCardContainer,
-  ProductDescription,
   ProductImage,
   ProductInfoContainer,
   ProductName,
   ProductPrice,
 } from './style';
 
-type Product = {
-  name: string;
-  description: string;
-  price: string;
-  image: string;
-};
-
 type ProductCardProps = {
   product: Product;
 };
 
 export function ProductCard({ product }: ProductCardProps) {
-  const { name, image, description, price } = product;
+  const { name, image, price, link } = product;
 
   return (
     <ProductCardContainer>
@@ -30,9 +23,14 @@ export function ProductCard({ product }: ProductCardProps) {
       </ImageContainer>
       <ProductInfoContainer>
         <ProductName>{name}</ProductName>
-        <ProductDescription>{description}</ProductDescription>
         <ProductPrice>${price}</ProductPrice>
-        <Button value="Go to web" />
+
+        <Button
+          value="Go to web"
+          onClick={() => {
+            window.open(link, '_blank');
+          }}
+        />
       </ProductInfoContainer>
     </ProductCardContainer>
   );

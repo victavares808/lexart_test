@@ -1,9 +1,11 @@
+import { ButtonHTMLAttributes } from 'react';
+
 import { StyledButton } from './style';
 
 type ButtonProps = {
   value: string;
-};
+} & ButtonHTMLAttributes<any>;
 
-export function Button({ value }: ButtonProps) {
-  return <StyledButton>{value}</StyledButton>;
+export function Button({ value, ...rest }: ButtonProps) {
+  return <StyledButton {...rest}>{value}</StyledButton>;
 }

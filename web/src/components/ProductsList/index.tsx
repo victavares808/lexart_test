@@ -1,57 +1,15 @@
+import { useProducts } from '../../context/useProducts';
 import { ProductCard } from './ProductCard';
 import { ProductsListContainer } from './style';
 
 export function ProductsList() {
+  const { products } = useProducts();
+
   return (
     <ProductsListContainer>
-      <ProductCard
-        product={{
-          name: '#Product 01',
-          price: 'R$ 100,00',
-          image: 'https:github.com/gusttavocdn.png',
-          description: 'Lorem ipsum dolor sit amet',
-        }}
-      />
-      <ProductCard
-        product={{
-          name: '#Product 01',
-          price: 'R$ 100,00',
-          image: 'https:github.com/gusttavocdn.png',
-          description: 'Lorem ipsum dolor sit amet',
-        }}
-      />
-      <ProductCard
-        product={{
-          name: '#Product 01',
-          price: 'R$ 100,00',
-          image: 'https:github.com/gusttavocdn.png',
-          description: 'Lorem ipsum dolor sit amet',
-        }}
-      />
-      <ProductCard
-        product={{
-          name: '#Product 01',
-          price: 'R$ 100,00',
-          image: 'https:github.com/gusttavocdn.png',
-          description: 'Lorem ipsum dolor sit amet',
-        }}
-      />
-      <ProductCard
-        product={{
-          name: '#Product 01',
-          price: 'R$ 100,00',
-          image: 'https:github.com/gusttavocdn.png',
-          description: 'Lorem ipsum dolor sit amet',
-        }}
-      />
-      <ProductCard
-        product={{
-          name: '#Product 01',
-          price: 'R$ 100,00',
-          image: 'https:github.com/gusttavocdn.png',
-          description: 'Lorem ipsum dolor sit amet',
-        }}
-      />
+      {products.map((product) => (
+        <ProductCard key={product.name} product={product} />
+      ))}
     </ProductsListContainer>
   );
 }
