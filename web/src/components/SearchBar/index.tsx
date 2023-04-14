@@ -12,7 +12,6 @@ export function SearchBar() {
   const [product, setProduct] = useState('');
 
   const handleSubmit = async () => {
-    console.log('submit');
     await fetchProducts(category, engine, product);
   };
 

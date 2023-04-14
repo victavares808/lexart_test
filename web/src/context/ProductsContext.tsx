@@ -32,7 +32,6 @@ export function ProductsProvider({ children }: PostsProviderProps) {
     product: string,
   ): Promise<void> => {
     const products = await getProducts({ category, engine, product });
-    console.log(products);
     setProducts(products);
   };
 
