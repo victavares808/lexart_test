@@ -4,16 +4,18 @@ import { Select } from './style';
 
 type DropFilterProps = {
   id: string;
-  category: string;
   options: string[];
   onChange: (value: string) => void;
+  value: string;
 };
 
-export function DropFilter({ id, category, options, onChange }: DropFilterProps) {
+export function DropFilter({ id, options, onChange, value }: DropFilterProps) {
   return (
-    <Select id={`${id}-select`} onChange={({ target }) => onChange(target.value)}>
-      <option value="">{category}</option>
-
+    <Select
+      id={`${id}-select`}
+      onChange={({ target }) => onChange(target.value)}
+      value={value}
+    >
       {options.map((option) => (
         <option key={option} value={option}>
           {option.toUpperCase()}

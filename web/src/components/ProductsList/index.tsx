@@ -1,10 +1,14 @@
 import { useProducts } from '../../context/useProducts';
+import { LoadingSpinner } from '../LoadingSpinner';
 import { ProductCard } from './ProductCard';
 import { ProductsListContainer } from './style';
 
 export function ProductsList() {
   const { products } = useProducts();
-  console.log(products);
+
+  if (!products.length) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <ProductsListContainer>

@@ -7,7 +7,9 @@ import { SearchBarContainer, SearchInput } from './style';
 
 export function SearchBar() {
   const { fetchProducts } = useProducts();
-  const [engine, setEngine] = useState<'all' | 'mercado-livre' | 'buscape'>('all');
+  const [engine, setEngine] = useState<'all' | 'mercado-livre' | 'buscape'>(
+    'mercado-livre',
+  );
   const [category, setCategory] = useState('geladeira');
   const [product, setProduct] = useState('');
 
@@ -19,15 +21,15 @@ export function SearchBar() {
     <SearchBarContainer>
       <DropFilter
         id="engine"
-        category="WEB"
         options={['all', 'mercado-livre', 'buscape']}
         onChange={setEngine as any}
+        value={engine}
       />
       <DropFilter
         id="category"
-        category="CATEGORIAS"
         options={['geladeira', 'tv', 'celular']}
         onChange={setCategory}
+        value={category}
       />
       <SearchInput
         type="text"
