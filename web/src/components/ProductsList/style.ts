@@ -10,4 +10,19 @@ const ProductsListContainer = styled.div`
   margin: 0 auto;
 `;
 
-export { ProductsListContainer };
+const ErrorContainer = styled.div`
+  background-color: #f3f3f3;
+  color: #d8000c;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 0 auto;
+  max-width: 600px;
+  text-align: center;
+  font-size: 1.5rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+export { ErrorContainer, ProductsListContainer };
