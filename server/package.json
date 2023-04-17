@@ -7,7 +7,6 @@
     "migrate": "npx prisma migrate dev",
     "predev": "npm run migrate",
     "dev": "tsx watch src/main/server.ts",
-    "prestart": "npm run migrate",
     "start": "tsx src/main/server.ts",
     "test": "jest --passWithNoTests --runInBand"
   },
