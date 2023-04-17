@@ -1,9 +1,9 @@
 import { type Controller, type HttpRequest, type HttpResponse } from '../../protocols';
-import { type Crawler } from '../../../infra/protocols';
+import { type Engine } from '../../../infra/protocols';
 import { type GetProducts } from '../../../domain/useCases/GetProducts';
 
 export class GetProductsFromBuscapeController implements Controller {
-  constructor(private readonly crawler: Crawler, private readonly getProducts: GetProducts) {
+  constructor(private readonly crawler: Engine, private readonly getProducts: GetProducts) {
   }
 
   async handle(request: HttpRequest): Promise<HttpResponse> {
