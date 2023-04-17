@@ -1,4 +1,4 @@
-import { Engine } from '../../protocols';
+import { type Engine } from '../../protocols';
 import { type CreateProductDTO } from '../../../data/protocols/';
 import { type AddProductsOnDB } from '../../../data/useCases/addProducts/AddProducts';
 

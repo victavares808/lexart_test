@@ -22,7 +22,7 @@ export const productsToAddMock: CreateProductDTO[] = [
     image: 'any_image',
     category: 'any_category',
     link: 'any_link',
-    engine: 'MLB'
+    engine: 'BUSCAPE'
   },
   {
     name: 'Product 2',
@@ -30,6 +30,6 @@ export const productsToAddMock: CreateProductDTO[] = [
     image: 'any_image',
     category: 'any_category',
     link: 'any_link',
-    engine: 'MLB'
+    engine: 'BUSCAPE'
   }
 ]

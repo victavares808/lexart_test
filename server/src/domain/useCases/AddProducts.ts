@@ -1,4 +1,4 @@
-type TEngine = 'MLB' | 'BUSCAPE'
+type TEngine = 'BUSCAPE' | 'MLB'
 
 export interface CreateProductDTO {
   name: string

@@ -9,7 +9,7 @@ export class GetAllProductsController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     const { category } = request.params;
     const { query } = request.query;
-    let products = await this.getProducts.execute(category, 'ALL', query);
+    const products = await this.getProducts.execute(category, 'ALL', query);
 
     return {
       statusCode: 200,
